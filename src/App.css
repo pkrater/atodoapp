@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Suez One', serif;
 }
 
 .App-logo {
@@ -21,10 +22,18 @@
 .App-intro {
   font-size: large;
 }
-li{list-style: none;}
+li{
+  list-style: disc;
+  text-align: left;
+}
 .active{}
 
-.done{color:rgb(192, 192, 192);}
+.done{
+  color:rgb(192, 192, 192);
+  text-decoration: line-through;    
+  text-decoration-color: #ce5454;
+  text-decoration-style: wavy;
+}
 
 @keyframes App-logo-spin {
   from { transform: rotate(0deg); }

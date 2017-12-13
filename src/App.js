@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
+import ReactMotionFlip from 'react-motion-flip';
 
 class AddTodo extends Component {
   constructor(props) {
@@ -35,10 +36,16 @@ class AddTodo extends Component {
 }
 
 const TodoItems = props => {
+  console.log(props);
   return (
     <div>
     <ul className='activeTodos'>
       {props.todos.map(item => (
+        <ReactMotionFlip
+        //style={{ display: "flex" }}
+        //childStyle={{ flexBasis: 100 }}
+        springConfig={{stiffness: 260, damping: 5}}
+        > 
         <TodoItem
           classname={'active'}
           done={false}
@@ -46,46 +53,55 @@ const TodoItems = props => {
           item={item}
           finishTodo={props.finishTodo}
         />
+        </ReactMotionFlip>
       ))}
       </ul>
       <ul className='doneTodos'>
       {props.doneTodos.map(item => (
+       
         <TodoItem
           classname={'done'}
           done={true}
-          key={item.id}
           item={item}
+          key={item.id}
           deleteTodo={props.deleteTodo}
         />
+        
       ))}
     </ul>
     </div>
   );
 };
 
+
 const TodoItem = props => {
+  console.log(props);
   if (props.done) {
     return (
+     
       <li
+        key={props.item.id}
         className={props.classname}
         onClick={() => props.deleteTodo(props.item)}
       >
         {props.item.todo}
       </li>
+      
     );
   } else {
     return (
+     
       <li
+        key={props.item.id}
         className={props.classname}
         onClick={() => props.finishTodo(props.item)}
       >
         {props.item.todo}
       </li>
+      
     );
   }
 };
-
-//export default componentName;
 
 class App extends Component {
   constructor() {

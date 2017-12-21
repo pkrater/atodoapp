@@ -8,7 +8,7 @@ const TodoItem = (props) => {
             className="done"
             onClick={() => props.finishTodo(props.item)}
           >
-            {props.item.todo}
+          <input type="checkbox" defaultChecked disabled /> {props.item.todo} 
           </li>
         );
       } else {
@@ -18,8 +18,7 @@ const TodoItem = (props) => {
             className={props.classname}
             onClick={() => props.finishTodo(props.item)}
           >
-            {props.item.todo}
-          </li>
+          <input type="checkbox" />  {props.item.todo} </li>
         );
       }
 };

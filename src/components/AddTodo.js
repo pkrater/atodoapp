@@ -7,10 +7,13 @@ class AddTodo extends Component {
     }
   
     craftTodo = todo => {
-      let id = new Date().getTime();
+      let createDate = new Date();
+      let id = createDate.getTime();
       return {
         todo,
-        id
+        id,
+        createDate,
+
       };
     };
   
@@ -23,9 +26,9 @@ class AddTodo extends Component {
     render() {
       return (
         <div>
-          <form onSubmit={this.onSubmit}>
-            <input name="addTodo" type="text" />
-            <button type="submit">+ add todo</button>
+          <form className="AddTodo" onSubmit={this.onSubmit}>
+            <input className="AddTodo-field" name="addTodo" type="text" />
+            <button className="AddTodo-button" type="submit">+</button>
           </form>
         </div>
       );

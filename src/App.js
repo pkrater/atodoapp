@@ -1,26 +1,32 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import AddTodo from './components/AddTodo';
 import TodoItems from './components/TodoItems';
-
-
 class App extends Component {
-  constructor() {
-    super();
-    this.state = {
+ 
+  state = {}; 
+
+  componentWillMount(){
+    const storedState = JSON.parse(localStorage.getItem('storedTodos'));
+    storedState ? 
+    this.setState(()=>storedState )
+    :
+    this.setState(()=> ( {
       todos: [],
       doneTodos: []
-    };
+    }
+  ))
+  };
+    
+  componentDidUpdate(){
+    localStorage.setItem('storedTodos' , JSON.stringify(this.state)  );
   }
-
   addTodoItem = item => {
-    this.setState(prevstate => {
-      return { todos: [item, ...prevstate.todos] };
-    });
+    this.setState( prevstate => ( { todos: [item, ...prevstate.todos] } ));
   };
 
   finishTodo = item => {
+    
     this.setState(prevstate => {
       if (item.done) {
         return {
@@ -49,7 +55,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header" />
+        <header className="App-header">the todo list</header>
         <AddTodo addTodoItem={this.addTodoItem} />
         <TodoItems
           finishTodo={this.finishTodo}

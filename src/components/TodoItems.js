@@ -7,20 +7,22 @@ const TodoItems = (props) => {
     return (
       <div>
         <ul className="activeTodos">
+        <ReactMotionFlip
+        style={{ display: "flex", flexDirection: "column" }}
+        childStyle={{ flexBasis: 35 }}
+        springConfig={{ stiffness: 160, damping: 10 }}
+      >
           {allTodos.map(item => (
-            <ReactMotionFlip
-              style={{ display: "flex" }}
-              //childStyle={{ flexBasis: 100 }}
-              springConfig={{ stiffness: 260, damping: 5 }}
-            >
+            
               <TodoItem
                 className={'active'}
                 key={item.id}
                 item={item}
                 finishTodo={props.finishTodo}
               />
-            </ReactMotionFlip>
+            
           ))}
+          </ReactMotionFlip>
         </ul>
       </div>
     );
